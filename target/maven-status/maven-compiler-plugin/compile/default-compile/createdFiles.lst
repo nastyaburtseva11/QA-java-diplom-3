@@ -1,0 +1,10 @@
+com\Base.class
+com\model\UserRegisterResponse.class
+site\nomoreparties\stellarburgers\pageobjects\ProfilePage.class
+com\model\User.class
+site\nomoreparties\stellarburgers\pageobjects\LoginPage.class
+site\nomoreparties\stellarburgers\pageobjects\MainPage.class
+com\UserOperations.class
+site\nomoreparties\stellarburgers\pageobjects\SignUpPage.class
+com\model\Tokens.class
+site\nomoreparties\stellarburgers\pageobjects\ForgotPasswordPage.class
