@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: site.nomoreparties.stellarburgers.SignInTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.841 s - in site.nomoreparties.stellarburgers.SignInTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 20.821 s - in site.nomoreparties.stellarburgers.SignInTest

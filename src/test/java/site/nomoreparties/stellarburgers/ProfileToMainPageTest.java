@@ -1,22 +1,34 @@
 package site.nomoreparties.stellarburgers;
 
 import com.UserOperations;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.junit4.DisplayName;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import site.nomoreparties.stellarburgers.pageobjects.LoginPage;
 import site.nomoreparties.stellarburgers.pageobjects.MainPage;
 import site.nomoreparties.stellarburgers.pageobjects.ProfilePage;
+
 import java.util.Map;
+
 import static com.codeborne.selenide.Selenide.open;
 import static org.hamcrest.core.Is.is;
 
 public class ProfileToMainPageTest {
 
+    private UserOperations userOperations;
+
+    @Before
+    public void setUp() {
+        Configuration.startMaximized = true;
+    }
+
     @After
-    public void closeBrowser() {
+    public void tearDown() {
+        userOperations.delete();
         Selenide.closeWebDriver();
     }
 
@@ -25,7 +37,7 @@ public class ProfileToMainPageTest {
     public void checkProfileToMainByConstructorButton() {
         LoginPage loginPage = open("https://stellarburgers.nomoreparties.site/login", LoginPage.class);
 
-        UserOperations userOperations = new UserOperations();
+        userOperations = new UserOperations();
         Map<String, String> responseData = userOperations.register();
         String login = responseData.get("email");
         String password = responseData.get("password");
@@ -39,7 +51,6 @@ public class ProfileToMainPageTest {
         String actual = mainPage.getHeaderText();
         String expected = "Соберите бургер";
         MatcherAssert.assertThat(actual, is(expected));
-
     }
 
     @Test
@@ -47,11 +58,10 @@ public class ProfileToMainPageTest {
     public void checkProfileToMainByLogo() {
         LoginPage loginPage = open("https://stellarburgers.nomoreparties.site/login", LoginPage.class);
 
-        UserOperations userOperations = new UserOperations();
+        userOperations = new UserOperations();
         Map<String, String> responseData = userOperations.register();
         String login = responseData.get("email");
         String password = responseData.get("password");
-        loginPage.pressSignInButton(); //костыль для логина
         loginPage.setPassword(password);
         loginPage.setEmail(login);
         MainPage mainPage = loginPage.pressSignInButton();
@@ -61,6 +71,5 @@ public class ProfileToMainPageTest {
         String actual = mainPage.getHeaderText();
         String expected = "Соберите бургер";
         MatcherAssert.assertThat(actual, is(expected));
-        userOperations.delete();
     }
 }
